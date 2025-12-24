@@ -7,11 +7,46 @@ import { artworks, Artwork } from "@/data/artworks"
 import { ArtworkModal } from "./ArtworkModal"
 import { Play } from "lucide-react"
 
-export function ArtworkGrid() {
+export function ArtworkGrid({
+  filterType,
+  searchQuery,
+}: {
+  filterType?: "video" | "image"
+  searchQuery?: string
+}) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.1 })
   const [selectedArtwork, setSelectedArtwork] = useState<Artwork | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
+
+  // Filter artworks based on media type first
+  const typeFilteredArtworks = filterType
+    ? artworks.filter((artwork) => {
+        if (filterType === "video") return artwork.video
+        if (filterType === "image") return artwork.image
+        return true
+      })
+    : artworks
+
+  // Apply search filter (case-insensitive) across metadata fields
+  const normalizedQuery = searchQuery?.trim().toLowerCase()
+
+  const filteredArtworks =
+    normalizedQuery && normalizedQuery.length > 0
+      ? typeFilteredArtworks.filter((artwork) => {
+          const fields = [
+            artwork.title,
+            artwork.artist,
+            artwork.price,
+            artwork.medium,
+            artwork.description,
+          ]
+
+          return fields.some((field) =>
+            field?.toLowerCase().includes(normalizedQuery)
+          )
+        })
+      : typeFilteredArtworks
 
   const container = {
     hidden: { opacity: 0 },
@@ -87,25 +122,36 @@ export function ArtworkGrid() {
         animate={isInView ? "show" : "hidden"}
         className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
       >
-        {artworks.map((artwork) => (
-          <motion.div 
-            key={artwork.id} 
+        {filteredArtworks.map((artwork) => (
+          <motion.div
+            key={artwork.id}
             variants={item}
             onClick={() => handleArtworkClick(artwork)}
             className="cursor-pointer group block overflow-hidden rounded-lg"
           >
-            <div className="relative aspect-square overflow-hidden rounded-lg bg-muted">
-              {renderMedia(artwork)}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-            </div>
-            <div className="p-4">
-              <h3 className="font-medium text-white">{artwork.title}</h3>
-              <p className="text-sm text-white/70">{artwork.artist}</p>
-              <p className="mt-2 text-sm font-medium text-white/90">{artwork.price}</p>
+            <div className="group">
+              {/* Image container with only top rounded corners */}
+              <div className="relative aspect-square overflow-hidden rounded-t-xl">
+                {renderMedia(artwork)}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              </div>
+
+              {/* Info container with only bottom rounded corners */}
+              <div className="p-4 border-2 border-white/20 border-t-0 rounded-b-xl">
+                <h3 className="font-medium text-white">Title - {artwork.title}</h3>
+                <p className="text-sm text-white/70">Artist - {artwork.artist}</p>
+                <p className="mt-2 text-sm font-medium text-white/90">Model - {artwork.price}</p>
+              </div>
             </div>
           </motion.div>
         ))}
       </motion.div>
+
+      {filteredArtworks.length === 0 && (
+        <div className="mt-6 rounded-xl border border-dashed border-white/15 bg-black/30 px-6 py-8 text-center text-sm text-white/50">
+          No results found. Try adjusting your search terms.
+        </div>
+      )}
       
       <ArtworkModal
         artwork={selectedArtwork}

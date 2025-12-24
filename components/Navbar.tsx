@@ -49,6 +49,7 @@ export function Navbar() {
           >
             Docs
           </Link>
+          
 
           <Link
             href="https://www.reddit.com"

@@ -2,7 +2,7 @@ import "./globals.css"
 import { ppEditorialNewUltralightItalic, inter } from "./fonts"
 import { Navbar } from "@/components/Navbar"
 // import { Footer } from "@/components/Footer"
-import { ConditionalFooter } from "@/components/ConditionalFooter"
+// import { ConditionalFooter } from "@/components/ConditionalFooter"
 import type React from "react"
 import { Analytics } from "@vercel/analytics/next"
 
@@ -23,13 +23,13 @@ export default function RootLayout({
         <link rel="icon" href="/pallete studio.ico" type="image/x-icon" />
       </head>
       <body className={inter.className}>
-        <Navbar />
+        {/* <Navbar /> */}
         <div>
           <main className="min-h-screen">
             {children}
           </main>
         </div>
-        <ConditionalFooter />
+        {/* <ConditionalFooter /> */}
         <Analytics />
       </body>
     </html>
