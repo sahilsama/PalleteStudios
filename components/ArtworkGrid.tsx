@@ -3,14 +3,16 @@
 import { useRef, useState } from "react"
 import Image from "next/image"
 import { motion, useInView } from "framer-motion"
-import { artworks, Artwork } from "@/data/artworks"
+import type { Artwork } from "@/data/artworks"
 import { ArtworkModal } from "./ArtworkModal"
 import { Play } from "lucide-react"
 
 export function ArtworkGrid({
+  artworks,
   filterType,
   searchQuery,
 }: {
+  artworks: Artwork[]
   filterType?: "video" | "image"
   searchQuery?: string
 }) {
@@ -140,7 +142,9 @@ export function ArtworkGrid({
               <div className="p-4 border-2 border-white/20 border-t-0 rounded-b-xl">
                 <h3 className="font-medium text-white">Title - {artwork.title}</h3>
                 <p className="text-sm text-white/70">Artist - {artwork.artist}</p>
-                <p className="mt-2 text-sm font-medium text-white/90">Model - {artwork.price}</p>
+                <p className="mt-2 text-sm font-medium text-white/90">
+                  Model - {artwork.price}
+                </p>
               </div>
             </div>
           </motion.div>
@@ -152,7 +156,7 @@ export function ArtworkGrid({
           No results found. Try adjusting your search terms.
         </div>
       )}
-      
+
       <ArtworkModal
         artwork={selectedArtwork}
         isOpen={isModalOpen}

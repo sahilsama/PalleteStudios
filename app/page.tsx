@@ -13,6 +13,8 @@ export default function Home() {
     <div
       className={`h-screen bg-[#141414] flex items-center justify-center p-8 ${ppEditorialNewUltralightItalic.variable} ${inter.variable}`}
     >
+
+
       <div className="w-full h-full flex flex-col md:flex-row items-stretch gap-8 md:gap-8">
         {/* Left Content */}
         <section className="w-full md:w-[260px] flex-shrink-0 flex flex-col justify-center h-full">
