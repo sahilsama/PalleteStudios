@@ -1,9 +1,9 @@
 "use client"
-
 import { useState } from "react"
 import { ppEditorialNewUltralightItalic, inter } from "./fonts"
-import Link from "next/link";
-import { VenetianMask} from "lucide-react";
+import { BlurFade } from "@/components/ui/blur-fade"
+// import Link from "next/link";
+// import { VenetianMask} from "lucide-react";
 
 export default function Home() {
   const [headerSize] = useState(1.2) // 120% is the default size
@@ -19,6 +19,7 @@ export default function Home() {
         {/* Left Content */}
         <section className="w-full md:w-[260px] flex-shrink-0 flex flex-col justify-center h-full">
           <div className="flex flex-col">
+          <BlurFade delay={0.25} inView>
             <h1
               className={`${ppEditorialNewUltralightItalic.className} text-4xl md:text-6xl font-light italic text-white/80 tracking-tighter leading-[130%]`}
               style={{ fontSize: `${4 * headerSize}rem` }}
@@ -29,25 +30,32 @@ export default function Home() {
               <br />
               Collection
             </h1>
+          </BlurFade>
             <div
               className={`flex flex-col gap-12 text-white/50 text-sm font-light max-w-[300px]`}
               style={{ fontSize: `${0.875 * textSize}rem` }}
             >
               <div className="space-y-6">
                 <div className="h-px bg-white/10 w-full" />
+                <BlurFade delay={0.25} inView>
                 <p>
                   Explore our curated collection of creative prompts for various design and animation projects. Each
                   card contains detailed prompts and examples to inspire your next creative endeavor. Hover over any
                   card to reveal the prompt behind the visual.
                 </p>
+                </BlurFade>
+                <BlurFade delay={0.50} inView>
                 <p>
-                  From motion graphics to web design, these prompts cover a wide range of creative disciplines and
-                  techniques, perfect for designers, animators, and creative professionals.
+                From motion graphics to web design, these prompts cover a wide range of creative disciplines and
+                techniques, perfect for designers, animators, and creative professionals.
                 </p>
                 <p>Here are some of our favorite prompts and examples.</p>
+                </BlurFade>
+               
                 <div className="h-px bg-white/10 w-full" />
               </div>
             </div>
+            <BlurFade delay={0.60} inView>
             <div className="mt-8 flex gap-3">
                   <a
                     href="/gallery"
@@ -62,6 +70,7 @@ export default function Home() {
                     Docs
                   </a>
             </div>
+            </BlurFade>
           </div>
         </section>
 
