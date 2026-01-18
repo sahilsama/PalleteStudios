@@ -49,3 +49,38 @@
 .backface-hidden {
   backface-visibility: hidden;
 }
+
+
+
+.carousel{
+  margin: 100px auto;
+  width: 90%;
+  border: 5px;
+  display: flex;
+  overflow-x: auto;
+}
+.carousel::-webkit-scrollbar{
+  display: none;
+}
+
+.groupdocs{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3;
+  animation: linearx 20s infinite linear;
+  padding-right: 3;
+}
+.carddocs {
+  flex: 0 0 5em;
+  height: 7em;
+  /* padding: 1px; */
+  border: 2px solid black;
+  font-size: 3rem;
+  text-align: center;
+  align-content: center;
+}
+@keyframes linearx{
+  from {translate: 0;}
+  to {translate: -100%;}
+}

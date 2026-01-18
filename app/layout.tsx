@@ -1,6 +1,6 @@
 import "./globals.css"
 import { ppEditorialNewUltralightItalic, inter } from "./fonts"
-import { Navbar } from "@/components/Navbar"
+// import { Navbar } from "@/components/Navbar"
 // import { Footer } from "@/components/Footer"
 // import { ConditionalFooter } from "@/components/ConditionalFooter"
 import type React from "react"

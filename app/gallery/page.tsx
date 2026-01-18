@@ -1,4 +1,5 @@
-import { GalleryShell } from "@/components/GalleryShell"
+import { GalleryShell } from "@/components/GalleryShell";
+import { Footer } from "@/components/Footer";
 
 export const metadata = {
   title: "Gallery Collection",
@@ -6,5 +7,11 @@ export const metadata = {
 }
 
 export default function GalleryPage() {
-  return <GalleryShell />
+  return(
+
+    <>
+  <GalleryShell />
+  <Footer/>
+  </> 
+  )
 } 

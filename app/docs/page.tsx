@@ -1,5 +1,7 @@
 import { ppEditorialNewUltralightItalic, inter } from "@/app/fonts"
-import { Navbar } from "@/components/Navbar" // Import Navbar
+// import { Navbar } from "@/components/Navbar" // Import Navbar
+import Carousel from "@/components/Carousel"
+import Link from "next/link"
 
 export const metadata = {
   title: "Pallete Docs",
@@ -11,7 +13,7 @@ export default function DocsPage() {
     <div
       className={`min-h-screen bg-[#141414] flex flex-col items-center p-8 pt-20 ${ppEditorialNewUltralightItalic.variable} ${inter.variable}`}
     >
-      <Navbar /> {/* Include Navbar here for consistency, though it's also in layout.tsx */}
+      {/* <Navbar /> Include Navbar here for consistency, though it's also in layout.tsx */}
       <main className="w-full max-w-3xl text-white/80 space-y-8">
         <h1
           className={`${ppEditorialNewUltralightItalic.className} text-4xl md:text-5xl font-light italic text-white/90 tracking-tighter leading-[130%] mb-8 text-center`}
@@ -30,6 +32,10 @@ export default function DocsPage() {
             Our goal is to offer a dynamic and engaging way to discover creative challenges, learn from examples, and
             contribute to a growing community of visual creators.
           </p>
+        </section>
+
+        <section>
+          <Carousel/>
         </section>
 
         <section className="space-y-4">
@@ -128,6 +134,11 @@ export default function DocsPage() {
 
         <footer className="text-center text-white/50 text-sm pt-8 border-t border-white/10 mt-12">
           <p>&copy; {new Date().getFullYear()} Pallete Studio. All rights reserved.</p>
+
+              <div className="flex gap-4 justify-center">
+              <Link href="/">Home</Link>
+              <Link href="/gallery">Gallery</Link>
+              </div>
         </footer>
       </main>
     </div>
